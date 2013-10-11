@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project default="jar">
+	<property name="src" location="src" />
+	<property name="test" location="test" />
+	<property name="classes" location="bin" />
+	<target name="compile">
+		<mkdir dir="${classes}" />
+		<javac destdir="${classes}" includeantruntime="false">
+			<src path="${src}" />
+			<src path="${test}" />
+			<include name="**/*.java" />
+			<exclude name="**/*Test.java"/>
+		</javac>
+	</target>
+	<target name="jar" depends="compile">
+		<jar jarfile="AutoFolderRenamer.jar">
+			<fileset dir="${classes}" />
+			<!--<fileset dir="exlib" />-->
+			<manifest>
+				<attribute name="Main-Class" value="project.blue.AutoFolderRenamer"/>
+			</manifest>
+		</jar>
+	</target>
+</project>
